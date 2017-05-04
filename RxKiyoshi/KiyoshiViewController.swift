@@ -22,10 +22,21 @@ class KiyoshiViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.outputString
+            .map { $0 + "\n" + self.outputTextView.text }
             .bind(to: outputTextView.rx.text)
+            .disposed(by: disposeBag)
+        
+        zunButton.rx.tap
+            .bind { [weak self] in
+                self?.viewModel.addZun()
+            }
             .addDisposableTo(disposeBag)
         
-        viewModel.test()
+        dokoButton.rx.tap
+            .bind { [weak self] in
+                self?.viewModel.addDoko()
+            }
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

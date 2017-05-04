@@ -1,0 +1,11 @@
+.DS_Store
+/Pods/
+/RxKiyoshi.xcworkspace/
+/RxKiyoshi.xcodeproj/xcuserdata
+/RxKiyoshi.xcodeproj/project.xcworkspace
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore bundler gems.
+vendor/bundle

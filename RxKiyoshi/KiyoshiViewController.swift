@@ -14,6 +14,7 @@ class KiyoshiViewController: UIViewController {
     @IBOutlet weak var zunButton: UIBarButtonItem!
     @IBOutlet weak var dokoButton: UIBarButtonItem!
     @IBOutlet weak var outputTextView: UITextView!
+    @IBOutlet weak var kiyoshiLabel: UILabel!
     
     var viewModel = KiyoshiViewModel()
     var disposeBag = DisposeBag()
@@ -21,9 +22,22 @@ class KiyoshiViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.outputString
+        kiyoshiLabel.layer.masksToBounds = true
+        kiyoshiLabel.layer.cornerRadius = 5
+        kiyoshiLabel.alpha = 0
+        
+        let vmOutput = viewModel.outputString.shareReplay(1)
+        
+        vmOutput
             .map { $0 + "\n" + self.outputTextView.text }
             .bind(to: outputTextView.rx.text)
+            .disposed(by: disposeBag)
+        
+        vmOutput
+            .filter { $0 == "キヨシ" }
+            .subscribe(onNext: { [weak self] (newValue) in
+                self?.kiyoshiAnimation()
+            })
             .disposed(by: disposeBag)
         
         zunButton.rx.tap
@@ -45,4 +59,16 @@ class KiyoshiViewController: UIViewController {
     }
     
 
+    // MARK: - 
+
+    func kiyoshiAnimation() {
+        UIView.animate(withDuration: 0.75,
+                       animations: { [weak self] in
+                        self?.kiyoshiLabel.alpha = 1
+        }) { [weak self] (_) in
+            UIView.animate(withDuration: 0.75) { [weak self] in
+                self?.kiyoshiLabel.alpha = 0
+            }
+        }
+    }
 }

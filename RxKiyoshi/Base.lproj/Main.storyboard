@@ -39,13 +39,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キヨシ!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evL-5Z-V7n">
+                                <rect key="frame" x="73.5" y="284.5" width="228" height="98"/>
+                                <color key="backgroundColor" white="0.8056640625" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="228" id="Hbb-Ij-Zci"/>
+                                    <constraint firstAttribute="height" constant="98" id="Nlw-Iy-zs2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ceb-rV-oux"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Mib-OX-8ql"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Nn1-5y-wBa"/>
+                            <constraint firstItem="evL-5Z-V7n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OPt-R3-Mlo"/>
                             <constraint firstAttribute="trailing" secondItem="CzR-Ge-t9V" secondAttribute="trailing" id="aBY-dw-p43"/>
+                            <constraint firstItem="evL-5Z-V7n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="baU-4o-cj8"/>
                             <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dq0-5j-rkp"/>
                             <constraint firstAttribute="trailing" secondItem="hS7-KQ-eCs" secondAttribute="trailing" id="g69-w4-5Tu"/>
                             <constraint firstItem="hS7-KQ-eCs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lci-as-fYj"/>
@@ -56,6 +69,7 @@
                     </view>
                     <connections>
                         <outlet property="dokoButton" destination="3I9-yo-OYA" id="FBp-68-daw"/>
+                        <outlet property="kiyoshiLabel" destination="evL-5Z-V7n" id="dXx-9T-IOH"/>
                         <outlet property="outputTextView" destination="hS7-KQ-eCs" id="Xh2-0b-djn"/>
                         <outlet property="zunButton" destination="IQB-xw-z3e" id="SML-uS-Bfe"/>
                     </connections>

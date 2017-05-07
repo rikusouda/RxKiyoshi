@@ -13,11 +13,12 @@ import RxCocoa
 class KiyoshiViewController: UIViewController {
     @IBOutlet weak var zunButton: UIBarButtonItem!
     @IBOutlet weak var dokoButton: UIBarButtonItem!
-    @IBOutlet weak var outputTextView: UITextView!
     @IBOutlet weak var kiyoshiLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var viewModel = KiyoshiViewModel()
     var disposeBag = DisposeBag()
+    var isLastKiyoshi = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +26,6 @@ class KiyoshiViewController: UIViewController {
         kiyoshiLabel.layer.masksToBounds = true
         kiyoshiLabel.layer.cornerRadius = 5
         kiyoshiLabel.alpha = 0
-        
-        let vmOutput = viewModel.outputString.shareReplay(1)
-        
-        vmOutput
-            .map { $0 + "\n" + self.outputTextView.text }
-            .bind(to: outputTextView.rx.text)
-            .disposed(by: disposeBag)
-        
-        vmOutput
-            .filter { $0 == "キヨシ" }
-            .subscribe(onNext: { [weak self] (newValue) in
-                self?.kiyoshiAnimation()
-            })
-            .disposed(by: disposeBag)
         
         zunButton.rx.tap
             .bind { [weak self] in
@@ -51,6 +38,29 @@ class KiyoshiViewController: UIViewController {
                 self?.viewModel.addDoko()
             }
             .addDisposableTo(disposeBag)
+        
+        viewModel.history.asObservable()
+            .bind(to: self.tableView.rx.items(cellIdentifier: "KiyoshiCell",
+                                         cellType: KiyoshiTableViewCell.self)) { (_, element, cell) in
+                cell.kiyoshiLabel.text = element
+            }
+            .addDisposableTo(disposeBag)
+        
+        viewModel.history.asObservable()
+            .map { $0.prefix(1) }
+            .subscribe(onNext: { [weak self] (value) in
+                if value == ["キヨシ"].prefix(1) {
+                    self?.isLastKiyoshi = true
+                    DispatchQueue.main.async {
+                        if self?.isLastKiyoshi == true {
+                            self?.kiyoshiAnimation()
+                        }
+                    }
+                } else {
+                    self?.isLastKiyoshi = false
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

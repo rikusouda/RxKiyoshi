@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B6035ACE1EBB2D7300F8F730 /* KiyoshiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035ACD1EBB2D7300F8F730 /* KiyoshiViewController.swift */; };
 		B6035AD01EBB311F00F8F730 /* KiyoshiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */; };
+		B6035AD81EBEDFF200F8F730 /* ZunDoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */; };
+		B6035ADC1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035ADB1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift */; };
 		B67C87261EBB1593009EA34F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67C87251EBB1593009EA34F /* AppDelegate.swift */; };
 		B67C872B1EBB1594009EA34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67C87291EBB1594009EA34F /* Main.storyboard */; };
 		B67C872D1EBB1594009EA34F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B67C872C1EBB1594009EA34F /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		A0901D14C90F46DEDE7B1137 /* Pods-RxKiyoshi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxKiyoshi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxKiyoshi/Pods-RxKiyoshi.debug.xcconfig"; sourceTree = "<group>"; };
 		B6035ACD1EBB2D7300F8F730 /* KiyoshiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiyoshiViewController.swift; sourceTree = "<group>"; };
 		B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiyoshiViewModel.swift; sourceTree = "<group>"; };
+		B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZunDoko.swift; sourceTree = "<group>"; };
+		B6035ADB1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiyoshiTableViewCell.swift; sourceTree = "<group>"; };
 		B67C87221EBB1593009EA34F /* RxKiyoshi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxKiyoshi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67C87251EBB1593009EA34F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67C872A1EBB1594009EA34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,8 +132,10 @@
 				B67C872C1EBB1594009EA34F /* Assets.xcassets */,
 				B67C872E1EBB1594009EA34F /* LaunchScreen.storyboard */,
 				B67C87311EBB1594009EA34F /* Info.plist */,
+				B6035ADB1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift */,
 				B6035ACD1EBB2D7300F8F730 /* KiyoshiViewController.swift */,
 				B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */,
+				B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */,
 			);
 			path = RxKiyoshi;
 			sourceTree = "<group>";
@@ -337,8 +343,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6035ADC1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift in Sources */,
 				B67C87261EBB1593009EA34F /* AppDelegate.swift in Sources */,
 				B6035AD01EBB311F00F8F730 /* KiyoshiViewModel.swift in Sources */,
+				B6035AD81EBEDFF200F8F730 /* ZunDoko.swift in Sources */,
 				B6035ACE1EBB2D7300F8F730 /* KiyoshiViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

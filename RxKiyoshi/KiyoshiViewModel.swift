@@ -8,32 +8,59 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 
 class KiyoshiViewModel {
-    enum ZunDoko {
-        case ズン
-        case ドコ
-        case キヨシ
+    var history = Variable<[String]>([])
+    
+    init() {
+        DispatchQueue.main.async { [weak self] in
+            self?.reloadData()
+        }
     }
     
-    var history: [ZunDoko] = [.ドコ, .ドコ, .ドコ, .ドコ, .ドコ]
-    let outputString = PublishSubject<String>()
-    
     func addZun() {
-        add(next: .ズン)
+        add(next: .zun)
     }
     
     func addDoko() {
-        add(next: .ドコ)
+        add(next: .doko)
+        
+        let realm = try! Realm()
+        try! realm.write() {
+            let newObject = ZunDoko.create(val: ZunDoko.Zdk.zun)
+            realm.add(newObject)
+        }
     }
     
-    private func add(next: ZunDoko) {
-        history = history[1...4] + [next]
-        outputString.onNext("\(next)")
+    private func add(next: ZunDoko.Zdk) {
+        guard let zdk = ZunDoko.Zdk(rawValue: next.rawValue) else {
+            return
+        }
+        let newObject = ZunDoko.create(val: zdk)
         
-        if history == [.ズン, .ズン, .ズン, .ズン, .ドコ] {
-            add(next: .キヨシ)
+        history.value.insert(newObject.toString(), at: 0)
+        
+        let realm = try! Realm()
+        try! realm.write() {
+            realm.add(newObject)
+        }
+        
+        let expected: [String] = ["ドコ", "ズン", "ズン", "ズン", "ズン"]
+        if history.value.prefix(5) == expected.prefix(5) {
+            add(next: .kiyoshi)
+        }
+    }
+    
+    func reloadData() {
+        history.value.removeAll()
+        
+        let realm = try! Realm()
+        let zdks = realm.objects(ZunDoko.self).sorted(byKeyPath: "id", ascending: false)
+        
+        for zdk in zdks {
+            history.value.append(zdk.toString())
         }
     }
     

@@ -12,14 +12,7 @@ import RealmSwift
 
 
 class KiyoshiViewModel {
-    enum ZunDoko2: Int {
-        case ズン
-        case ドコ
-        case キヨシ
-    }
-    
-    var history: [ZunDoko2] = [.ドコ, .ドコ, .ドコ, .ドコ, .ドコ]
-    let outputString = PublishSubject<String>()
+    var history = Variable<[String]>([])
     
     init() {
         DispatchQueue.main.async { [weak self] in
@@ -28,11 +21,11 @@ class KiyoshiViewModel {
     }
     
     func addZun() {
-        add(next: .ズン)
+        add(next: .zun)
     }
     
     func addDoko() {
-        add(next: .ドコ)
+        add(next: .doko)
         
         let realm = try! Realm()
         try! realm.write() {
@@ -41,33 +34,33 @@ class KiyoshiViewModel {
         }
     }
     
-    private func add(next: ZunDoko2) {
-        history = history[1...4] + [next]
-        outputString.onNext("\(next)")
+    private func add(next: ZunDoko.Zdk) {
+        guard let zdk = ZunDoko.Zdk(rawValue: next.rawValue) else {
+            return
+        }
+        let newObject = ZunDoko.create(val: zdk)
+        
+        history.value.insert(newObject.toString(), at: 0)
         
         let realm = try! Realm()
         try! realm.write() {
-            if let zdk = ZunDoko.Zdk(rawValue: next.rawValue) {
-                let newObject = ZunDoko.create(val: zdk)
-                realm.add(newObject)
-            }
+            realm.add(newObject)
         }
         
-        if history == [.ズン, .ズン, .ズン, .ズン, .ドコ] {
-            add(next: .キヨシ)
+        let expected: [String] = ["ドコ", "ズン", "ズン", "ズン", "ズン"]
+        if history.value.prefix(5) == expected.prefix(5) {
+            add(next: .kiyoshi)
         }
     }
     
     func reloadData() {
-        history = [.ドコ, .ドコ, .ドコ, .ドコ, .ドコ]
+        history.value.removeAll()
         
         let realm = try! Realm()
-        let zdks = realm.objects(ZunDoko.self).sorted(byKeyPath: "id")
+        let zdks = realm.objects(ZunDoko.self).sorted(byKeyPath: "id", ascending: false)
         
         for zdk in zdks {
-            let zdk2 = ZunDoko2(rawValue: zdk.valAsZdk.rawValue)!
-            history = history[1...4] + [zdk2]
-            outputString.onNext("\(zdk2)")
+            history.value.append(zdk.toString())
         }
     }
     

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,14 +34,39 @@
                                     <barButtonItem title="ドコ" id="3I9-yo-OYA"/>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hS7-KQ-eCs">
-                                <rect key="frame" x="0.0" y="30" width="375" height="593"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-6E-jH4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KiyoshiCell" rowHeight="43" id="X5N-4S-4po" customClass="KiyoshiTableViewCell" customModule="RxKiyoshi" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5N-4S-4po" id="nPh-jr-TtG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BW-ka-aDR">
+                                                    <rect key="frame" x="8" y="8" width="359" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3BW-ka-aDR" secondAttribute="trailing" id="KK6-yR-x9a"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3BW-ka-aDR" secondAttribute="bottom" id="NRh-cM-yDD"/>
+                                                <constraint firstItem="3BW-ka-aDR" firstAttribute="leading" secondItem="nPh-jr-TtG" secondAttribute="leadingMargin" id="Sim-SE-4AH"/>
+                                                <constraint firstItem="3BW-ka-aDR" firstAttribute="top" secondItem="nPh-jr-TtG" secondAttribute="topMargin" id="zmo-fu-hCK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="kiyoshiLabel" destination="3BW-ka-aDR" id="BWd-7Y-iMh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キヨシ!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evL-5Z-V7n">
-                                <rect key="frame" x="73.5" y="284.5" width="228" height="98"/>
+                                <rect key="frame" x="73" y="284" width="228" height="98"/>
                                 <color key="backgroundColor" white="0.8056640625" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="228" id="Hbb-Ij-Zci"/>
@@ -53,30 +79,30 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CzR-Ge-t9V" firstAttribute="top" secondItem="dnC-6E-jH4" secondAttribute="bottom" id="8nJ-M2-4eO"/>
                             <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ceb-rV-oux"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Mib-OX-8ql"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Nn1-5y-wBa"/>
                             <constraint firstItem="evL-5Z-V7n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OPt-R3-Mlo"/>
+                            <constraint firstAttribute="trailing" secondItem="dnC-6E-jH4" secondAttribute="trailing" id="WrE-d9-bHu"/>
                             <constraint firstAttribute="trailing" secondItem="CzR-Ge-t9V" secondAttribute="trailing" id="aBY-dw-p43"/>
                             <constraint firstItem="evL-5Z-V7n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="baU-4o-cj8"/>
                             <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dq0-5j-rkp"/>
-                            <constraint firstAttribute="trailing" secondItem="hS7-KQ-eCs" secondAttribute="trailing" id="g69-w4-5Tu"/>
-                            <constraint firstItem="hS7-KQ-eCs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lci-as-fYj"/>
-                            <constraint firstItem="CzR-Ge-t9V" firstAttribute="top" secondItem="hS7-KQ-eCs" secondAttribute="bottom" id="pvC-wL-D1l"/>
+                            <constraint firstItem="dnC-6E-jH4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="e5u-dc-6p7"/>
                             <constraint firstAttribute="trailing" secondItem="CzR-Ge-t9V" secondAttribute="trailing" id="tao-ab-veO"/>
-                            <constraint firstItem="hS7-KQ-eCs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="30" id="zf1-67-n1S"/>
+                            <constraint firstItem="dnC-6E-jH4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yCk-Yu-scY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dokoButton" destination="3I9-yo-OYA" id="FBp-68-daw"/>
                         <outlet property="kiyoshiLabel" destination="evL-5Z-V7n" id="dXx-9T-IOH"/>
-                        <outlet property="outputTextView" destination="hS7-KQ-eCs" id="Xh2-0b-djn"/>
+                        <outlet property="tableView" destination="dnC-6E-jH4" id="9mf-2G-EsB"/>
                         <outlet property="zunButton" destination="IQB-xw-z3e" id="SML-uS-Bfe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-146.40000000000001" y="49.025487256371818"/>
         </scene>
     </scenes>
 </document>

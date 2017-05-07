@@ -41,4 +41,12 @@ class ZunDoko: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    func toString() -> String {
+        switch self.valAsZdk {
+        case .zun: return "ズン"
+        case .doko: return "ドコ"
+        case .kiyoshi: return "キヨシ"
+        }
+    }
 }

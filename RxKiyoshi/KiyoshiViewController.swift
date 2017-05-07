@@ -18,6 +18,7 @@ class KiyoshiViewController: UIViewController {
     
     var viewModel = KiyoshiViewModel()
     var disposeBag = DisposeBag()
+    var isLastKiyoshi = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,17 @@ class KiyoshiViewController: UIViewController {
             .disposed(by: disposeBag)
         
         vmOutput
-            .filter { $0 == "キヨシ" }
             .subscribe(onNext: { [weak self] (newValue) in
-                self?.kiyoshiAnimation()
+                if newValue == "キヨシ" {
+                    self?.isLastKiyoshi = true
+                    DispatchQueue.main.async {
+                        if self?.isLastKiyoshi == true {
+                            self?.kiyoshiAnimation()
+                        }
+                    }
+                } else {
+                    self?.isLastKiyoshi = false
+                }
             })
             .disposed(by: disposeBag)
         

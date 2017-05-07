@@ -26,12 +26,6 @@ class KiyoshiViewModel {
     
     func addDoko() {
         add(next: .doko)
-        
-        let realm = try! Realm()
-        try! realm.write() {
-            let newObject = ZunDoko.create(val: ZunDoko.Zdk.zun)
-            realm.add(newObject)
-        }
     }
     
     private func add(next: ZunDoko.Zdk) {
@@ -54,14 +48,9 @@ class KiyoshiViewModel {
     }
     
     func reloadData() {
-        history.value.removeAll()
-        
         let realm = try! Realm()
         let zdks = realm.objects(ZunDoko.self).sorted(byKeyPath: "id", ascending: false)
-        
-        for zdk in zdks {
-            history.value.append(zdk.toString())
-        }
+        history.value = zdks.map { $0.toString() }
     }
     
 }

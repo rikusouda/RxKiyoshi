@@ -10,22 +10,25 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class KiyoshiViewController: UIViewController {
+class KiyoshiViewController: UITableViewController {
     @IBOutlet weak var zunButton: UIBarButtonItem!
     @IBOutlet weak var dokoButton: UIBarButtonItem!
-    @IBOutlet weak var kiyoshiLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     
     var viewModel = KiyoshiViewModel()
     var disposeBag = DisposeBag()
-    var isLastKiyoshi = false
+    
+    var kiyoshiToast: ProgressHUD?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        kiyoshiLabel.layer.masksToBounds = true
-        kiyoshiLabel.layer.cornerRadius = 5
-        kiyoshiLabel.alpha = 0
+
+        self.tableView.dataSource = nil
+        viewModel.history.asObservable()
+            .bind(to: self.tableView.rx.items(cellIdentifier: "KiyoshiCell",
+                                              cellType: KiyoshiTableViewCell.self)) { (_, element, cell) in
+                                                cell.kiyoshiLabel.text = element
+            }
+            .addDisposableTo(disposeBag)
         
         zunButton.rx.tap
             .bind { [weak self] in
@@ -39,25 +42,15 @@ class KiyoshiViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.history.asObservable()
-            .bind(to: self.tableView.rx.items(cellIdentifier: "KiyoshiCell",
-                                         cellType: KiyoshiTableViewCell.self)) { (_, element, cell) in
-                cell.kiyoshiLabel.text = element
-            }
-            .addDisposableTo(disposeBag)
-        
+        self.kiyoshiToast = ProgressHUD.createTextToast(to: self.view, text: "キヨシ!")
         viewModel.history.asObservable()
             .map { $0.prefix(1) }
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
+                guard let this = self else { return }
                 if value == ["キヨシ"].prefix(1) {
-                    self?.isLastKiyoshi = true
-                    DispatchQueue.main.async {
-                        if self?.isLastKiyoshi == true {
-                            self?.kiyoshiAnimation()
-                        }
-                    }
-                } else {
-                    self?.isLastKiyoshi = false
+                    this.kiyoshiToast?.show(animated: true)
+                    this.kiyoshiToast?.hide(animated: true, afterDelay: 1.0)
                 }
             })
             .disposed(by: disposeBag)
@@ -66,19 +59,5 @@ class KiyoshiViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-
-    // MARK: - 
-
-    func kiyoshiAnimation() {
-        UIView.animate(withDuration: 0.75,
-                       animations: { [weak self] in
-                        self?.kiyoshiLabel.alpha = 1
-        }) { [weak self] (_) in
-            UIView.animate(withDuration: 0.75) { [weak self] in
-                self?.kiyoshiLabel.alpha = 0
-            }
-        }
     }
 }

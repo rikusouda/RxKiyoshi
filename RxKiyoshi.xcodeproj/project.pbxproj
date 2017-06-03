@@ -11,6 +11,7 @@
 		B6035AD01EBB311F00F8F730 /* KiyoshiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */; };
 		B6035AD81EBEDFF200F8F730 /* ZunDoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */; };
 		B6035ADC1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6035ADB1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift */; };
+		B637B7881EE2A8C600F41641 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B637B7871EE2A8C600F41641 /* ProgressHUD.swift */; };
 		B67C87261EBB1593009EA34F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67C87251EBB1593009EA34F /* AppDelegate.swift */; };
 		B67C872B1EBB1594009EA34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67C87291EBB1594009EA34F /* Main.storyboard */; };
 		B67C872D1EBB1594009EA34F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B67C872C1EBB1594009EA34F /* Assets.xcassets */; };
@@ -44,6 +45,8 @@
 		B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiyoshiViewModel.swift; sourceTree = "<group>"; };
 		B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZunDoko.swift; sourceTree = "<group>"; };
 		B6035ADB1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiyoshiTableViewCell.swift; sourceTree = "<group>"; };
+		B637B7841EE2A7CB00F41641 /* RxKiyoshi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxKiyoshi-Bridging-Header.h"; sourceTree = "<group>"; };
+		B637B7871EE2A8C600F41641 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		B67C87221EBB1593009EA34F /* RxKiyoshi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxKiyoshi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67C87251EBB1593009EA34F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B67C872A1EBB1594009EA34F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				B6035ACD1EBB2D7300F8F730 /* KiyoshiViewController.swift */,
 				B6035ACF1EBB311F00F8F730 /* KiyoshiViewModel.swift */,
 				B6035AD71EBEDFF200F8F730 /* ZunDoko.swift */,
+				B637B7871EE2A8C600F41641 /* ProgressHUD.swift */,
+				B637B7841EE2A7CB00F41641 /* RxKiyoshi-Bridging-Header.h */,
 			);
 			path = RxKiyoshi;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				TargetAttributes = {
 					B67C87211EBB1593009EA34F = {
 						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B67C87351EBB1594009EA34F = {
@@ -346,6 +352,7 @@
 				B6035ADC1EBEECFE00F8F730 /* KiyoshiTableViewCell.swift in Sources */,
 				B67C87261EBB1593009EA34F /* AppDelegate.swift in Sources */,
 				B6035AD01EBB311F00F8F730 /* KiyoshiViewModel.swift in Sources */,
+				B637B7881EE2A8C600F41641 /* ProgressHUD.swift in Sources */,
 				B6035AD81EBEDFF200F8F730 /* ZunDoko.swift in Sources */,
 				B6035ACE1EBB2D7300F8F730 /* KiyoshiViewController.swift in Sources */,
 			);
@@ -502,11 +509,14 @@
 			baseConfigurationReference = A0901D14C90F46DEDE7B1137 /* Pods-RxKiyoshi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RxKiyoshi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rikusouda.rxkiyoshi.RxKiyoshi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxKiyoshi/RxKiyoshi-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -516,11 +526,13 @@
 			baseConfigurationReference = DC451586D4C196A2B53BC984 /* Pods-RxKiyoshi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RxKiyoshi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rikusouda.rxkiyoshi.RxKiyoshi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxKiyoshi/RxKiyoshi-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

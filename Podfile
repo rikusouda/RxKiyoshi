@@ -3,6 +3,7 @@ def shared_pods
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RealmSwift'
+    pod 'MBProgressHUD', '~> 1.0.0'
 end
 
 target 'RxKiyoshi' do

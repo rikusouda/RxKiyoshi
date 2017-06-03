@@ -1,108 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZiW-mu-Xcf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Kiyoshi View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--キヨシゲーム-->
+        <scene sceneID="0jT-sp-AwX">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="KiyoshiViewController" customModule="RxKiyoshi" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController title="キヨシゲーム" id="WzY-FF-6UH" customClass="KiyoshiViewController" customModule="RxKiyoshi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="F8v-3n-nEq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzR-Ge-t9V">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="3nl-fG-zPQ"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="ETI-hX-OSM"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem title="ズン" id="IQB-xw-z3e"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e3K-pl-fzp"/>
-                                    <barButtonItem title="ドコ" id="3I9-yo-OYA"/>
-                                </items>
-                            </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-6E-jH4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KiyoshiCell" rowHeight="43" id="X5N-4S-4po" customClass="KiyoshiTableViewCell" customModule="RxKiyoshi" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5N-4S-4po" id="nPh-jr-TtG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BW-ka-aDR">
-                                                    <rect key="frame" x="8" y="8" width="359" height="26.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3BW-ka-aDR" secondAttribute="trailing" id="KK6-yR-x9a"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3BW-ka-aDR" secondAttribute="bottom" id="NRh-cM-yDD"/>
-                                                <constraint firstItem="3BW-ka-aDR" firstAttribute="leading" secondItem="nPh-jr-TtG" secondAttribute="leadingMargin" id="Sim-SE-4AH"/>
-                                                <constraint firstItem="3BW-ka-aDR" firstAttribute="top" secondItem="nPh-jr-TtG" secondAttribute="topMargin" id="zmo-fu-hCK"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="kiyoshiLabel" destination="3BW-ka-aDR" id="BWd-7Y-iMh"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キヨシ!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evL-5Z-V7n">
-                                <rect key="frame" x="73" y="284" width="228" height="98"/>
-                                <color key="backgroundColor" white="0.8056640625" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="Hbb-Ij-Zci"/>
-                                    <constraint firstAttribute="height" constant="98" id="Nlw-Iy-zs2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="CzR-Ge-t9V" firstAttribute="top" secondItem="dnC-6E-jH4" secondAttribute="bottom" id="8nJ-M2-4eO"/>
-                            <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ceb-rV-oux"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Mib-OX-8ql"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CzR-Ge-t9V" secondAttribute="bottom" id="Nn1-5y-wBa"/>
-                            <constraint firstItem="evL-5Z-V7n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OPt-R3-Mlo"/>
-                            <constraint firstAttribute="trailing" secondItem="dnC-6E-jH4" secondAttribute="trailing" id="WrE-d9-bHu"/>
-                            <constraint firstAttribute="trailing" secondItem="CzR-Ge-t9V" secondAttribute="trailing" id="aBY-dw-p43"/>
-                            <constraint firstItem="evL-5Z-V7n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="baU-4o-cj8"/>
-                            <constraint firstItem="CzR-Ge-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dq0-5j-rkp"/>
-                            <constraint firstItem="dnC-6E-jH4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="e5u-dc-6p7"/>
-                            <constraint firstAttribute="trailing" secondItem="CzR-Ge-t9V" secondAttribute="trailing" id="tao-ab-veO"/>
-                            <constraint firstItem="dnC-6E-jH4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yCk-Yu-scY"/>
-                        </constraints>
-                    </view>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KiyoshiCell" rowHeight="43" id="5Vr-jI-8jb" customClass="KiyoshiTableViewCell" customModule="RxKiyoshi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Vr-jI-8jb" id="D9I-fH-1hz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4r-Tu-qs1">
+                                            <rect key="frame" x="8" y="8" width="359" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Z4r-Tu-qs1" firstAttribute="top" secondItem="D9I-fH-1hz" secondAttribute="topMargin" id="66u-hk-gKq"/>
+                                        <constraint firstItem="Z4r-Tu-qs1" firstAttribute="leading" secondItem="D9I-fH-1hz" secondAttribute="leadingMargin" id="RWD-JR-7dA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Z4r-Tu-qs1" secondAttribute="trailing" id="bgp-dW-8ag"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Z4r-Tu-qs1" secondAttribute="bottom" id="cZf-bK-ana"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="kiyoshiLabel" destination="Z4r-Tu-qs1" id="4Gu-jB-uGr"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WzY-FF-6UH" id="TR2-yD-Och"/>
+                            <outlet property="delegate" destination="WzY-FF-6UH" id="IZo-ww-Ngx"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="ズン" id="MKg-pT-Db5"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="pPW-4u-67O"/>
+                        <barButtonItem title="ドコ" id="I8a-EF-pRd"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="キヨシゲーム " id="cJ6-sm-81N"/>
                     <connections>
-                        <outlet property="dokoButton" destination="3I9-yo-OYA" id="FBp-68-daw"/>
-                        <outlet property="kiyoshiLabel" destination="evL-5Z-V7n" id="dXx-9T-IOH"/>
-                        <outlet property="tableView" destination="dnC-6E-jH4" id="9mf-2G-EsB"/>
-                        <outlet property="zunButton" destination="IQB-xw-z3e" id="SML-uS-Bfe"/>
+                        <outlet property="dokoButton" destination="I8a-EF-pRd" id="lRZ-pF-J4R"/>
+                        <outlet property="zunButton" destination="MKg-pT-Db5" id="ERO-BC-ew2"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xX4-i7-b1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146.40000000000001" y="49.025487256371818"/>
+            <point key="canvasLocation" x="442" y="597"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yb7-6b-Jrf">
+            <objects>
+                <navigationController toolbarHidden="NO" id="ZiW-mu-Xcf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rrs-0J-pJg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ore-ZT-Ifs">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="WzY-FF-6UH" kind="relationship" relationship="rootViewController" id="nev-iD-zF0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bQN-uj-Cl6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-582" y="597"/>
         </scene>
     </scenes>
 </document>

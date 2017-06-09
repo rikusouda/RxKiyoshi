@@ -21,9 +21,9 @@ class RxKiyoshiTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDokoModel() {
+        let zdk = ZunDoko.create(val: .doko)
+        XCTAssert(zdk.toString() == "ドコ")
     }
     
     func testPerformanceExample() {

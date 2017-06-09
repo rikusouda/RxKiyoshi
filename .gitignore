@@ -4,6 +4,15 @@
 /RxKiyoshi.xcodeproj/xcuserdata
 /RxKiyoshi.xcodeproj/project.xcworkspace
 
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/screenshots/screenshots.html
+fastlane/test_output
+fastlane/build
+fastlane/profiles
+
 # Ignore bundler config.
 /.bundle
 

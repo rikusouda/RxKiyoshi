@@ -12,3 +12,10 @@ target 'RxKiyoshi' do
     inhibit_all_warnings!
     shared_pods
 end
+
+target 'RxKiyoshiTests' do
+    platform :ios, '10.0'
+    use_frameworks!
+    inhibit_all_warnings!
+    shared_pods
+end

@@ -36,6 +36,28 @@ platform :ios do
       scan(scheme: "RxKiyoshi")
   end
 
+  desc "distribute as beta"
+  lane :beta do
+      provisioning_profile_specifier = ENV['POROSIONING_PROFILE_SPECIFIRE']
+      code_sign_identity = ENV['CODE_SIGN_IDENTITY']
+
+      disable_automatic_code_signing(path: "RxKiyoshi.xcodeproj")
+      gym(
+        clean: true,
+        scheme: "RxKiyoshi",
+        output_directory: './fastlane/build',
+        export_method: "ad-hoc",
+        xcargs: "CODE_SIGN_IDENTITY='#{code_sign_identity}' PROVISIONING_PROFILE_SPECIFIER='#{provisioning_profile_specifier}'"
+      )
+      enable_automatic_code_signing(path: "RxKiyoshi.xcodeproj")
+    #   crashlytics(
+    #     api_token: ENV['FABRIC_API_TOKEN'],
+    #     build_secret: ENV['FABRIC_BUILD_SECRET'],
+    #     groups: 'temp-1'
+    #     # notes: last_git_commit[:message]
+    #   )
+  end
+
   # You can define as many lanes as you want
 
   after_all do |lane|

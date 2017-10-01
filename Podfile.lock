@@ -1,10 +1,10 @@
 PODS:
   - MBProgressHUD (1.0.0)
-  - Realm (2.6.2):
-    - Realm/Headers (= 2.6.2)
-  - Realm/Headers (2.6.2)
-  - RealmSwift (2.6.2):
-    - Realm (= 2.6.2)
+  - Realm (2.10.2):
+    - Realm/Headers (= 2.10.2)
+  - Realm/Headers (2.10.2)
+  - RealmSwift (2.10.2):
+    - Realm (= 2.10.2)
   - RxCocoa (3.4.0):
     - RxSwift (~> 3.4)
   - RxSwift (3.4.0)
@@ -17,8 +17,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
-  RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
+  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
+  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
   RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
 

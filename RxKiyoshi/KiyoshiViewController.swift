@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AVFoundation
 
 class KiyoshiViewController: UITableViewController {
     @IBOutlet weak var zunButton: UIBarButtonItem!
@@ -18,6 +19,7 @@ class KiyoshiViewController: UITableViewController {
     var disposeBag = DisposeBag()
     
     var kiyoshiToast: ProgressHUD?
+    private var talker = AVSpeechSynthesizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +48,26 @@ class KiyoshiViewController: UITableViewController {
         tableView.rx.itemSelected
             .asDriver()
             .drive(onNext: { [weak self] (indexPath) in
+                if let item = self?.viewModel.history.value[indexPath.row] {
+                    self?.speak(text: item.name)
+                }
                 self?.tableView.deselectRow(at: indexPath, animated: true)
             }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
         self.kiyoshiToast = ProgressHUD.createTextToast(to: self.view, text: "キヨシ!")
         viewModel.history.asObservable()
-            .map { $0.prefix(1) }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
                 guard let this = self else { return }
-                if value.last?.name == "キヨシ" {
-                    this.kiyoshiToast?.show(animated: true)
-                    this.kiyoshiToast?.hide(animated: true, afterDelay: 1.0)
+                
+                if let first = value.first {
+                    if first.name == "キヨシ" {
+                        this.kiyoshiToast?.show(animated: true)
+                        this.kiyoshiToast?.hide(animated: true, afterDelay: 1.0)
+                    }
+                    
+                    this.speak(text: first.name)
                 }
             })
             .disposed(by: disposeBag)
@@ -67,5 +76,11 @@ class KiyoshiViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    private func speak(text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        self.talker.speak(utterance)
     }
 }

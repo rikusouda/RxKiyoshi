@@ -69,6 +69,12 @@ class KiyoshiViewController: UITableViewController {
                     
                     this.speak(text: first.name)
                 }
+                
+                DispatchQueue.main.async {
+                    this.tableView.scrollToRow(at: IndexPath(row: 0, section: 0),
+                                               at: .top, animated: true)
+                }
+
             })
             .disposed(by: disposeBag)
     }

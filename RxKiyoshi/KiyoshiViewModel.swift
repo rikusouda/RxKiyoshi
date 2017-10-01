@@ -10,9 +10,19 @@ import Foundation
 import RxSwift
 import RealmSwift
 
+protocol ZunDokoViewModel {
+    var name: String { get }
+}
+
+// Use Model as ViewModel without transform
+extension ZunDoko: ZunDokoViewModel {
+    var name: String {
+        return self.toString()
+    }
+}
 
 class KiyoshiViewModel {
-    var history = Variable<[String]>([])
+    var history = Variable<[ZunDokoViewModel]>([])
     
     init() {
         DispatchQueue.main.async { [weak self] in
@@ -34,7 +44,7 @@ class KiyoshiViewModel {
         }
         let newObject = ZunDoko.create(val: zdk)
         
-        history.value.insert(newObject.toString(), at: 0)
+        history.value.insert(newObject, at: 0)
         
         let realm = try! Realm()
         try! realm.write() {
@@ -42,15 +52,18 @@ class KiyoshiViewModel {
         }
         
         let expected: [String] = ["ドコ", "ズン", "ズン", "ズン", "ズン"]
-        if history.value.prefix(5) == expected.prefix(5) {
-            add(next: .kiyoshi)
+        for (index, value) in history.value.prefix(5).enumerated() {
+            if value.name != expected[index] { return }
         }
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5, execute: { [weak self] in
+            self?.add(next: .kiyoshi)
+        })
     }
     
     func reloadData() {
         let realm = try! Realm()
         let zdks = realm.objects(ZunDoko.self).sorted(byKeyPath: "id", ascending: false)
-        history.value = zdks.map { $0.toString() }
+        history.value = Array(zdks)
     }
     
 }

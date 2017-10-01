@@ -23,10 +23,11 @@ class KiyoshiViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.dataSource = nil
-        viewModel.history.asObservable()
+        viewModel.history
+            .asObservable()
             .bind(to: self.tableView.rx.items(cellIdentifier: "KiyoshiCell",
                                               cellType: KiyoshiTableViewCell.self)) { (_, element, cell) in
-                                                cell.kiyoshiLabel.text = element
+                                                cell.kiyoshiLabel.text = element.name
             }
             .addDisposableTo(disposeBag)
         
@@ -42,13 +43,20 @@ class KiyoshiViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
         
+        tableView.rx.itemSelected
+            .asDriver()
+            .drive(onNext: { [weak self] (indexPath) in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+            }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
         self.kiyoshiToast = ProgressHUD.createTextToast(to: self.view, text: "キヨシ!")
         viewModel.history.asObservable()
             .map { $0.prefix(1) }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
                 guard let this = self else { return }
-                if value == ["キヨシ"].prefix(1) {
+                if value.last?.name == "キヨシ" {
                     this.kiyoshiToast?.show(animated: true)
                     this.kiyoshiToast?.hide(animated: true, afterDelay: 1.0)
                 }

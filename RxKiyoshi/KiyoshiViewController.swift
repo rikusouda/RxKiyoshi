@@ -31,19 +31,19 @@ class KiyoshiViewController: UITableViewController {
                                               cellType: KiyoshiTableViewCell.self)) { (_, element, cell) in
                                                 cell.kiyoshiLabel.text = element.name
             }
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         zunButton.rx.tap
             .bind { [weak self] in
                 self?.viewModel.addZun()
             }
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         dokoButton.rx.tap
             .bind { [weak self] in
                 self?.viewModel.addDoko()
             }
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
             .asDriver()
@@ -53,7 +53,7 @@ class KiyoshiViewController: UITableViewController {
                 }
                 self?.tableView.deselectRow(at: indexPath, animated: true)
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         self.kiyoshiToast = ProgressHUD.createTextToast(to: self.view, text: "キヨシ!")
         viewModel.history.asObservable()

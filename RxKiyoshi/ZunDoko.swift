@@ -16,8 +16,8 @@ class ZunDoko: Object {
         case kiyoshi = 2
     }
     
-    dynamic var id: Int = 0
-    dynamic var val: Int = 0
+    @objc dynamic var id: Int = 0
+    @objc dynamic var val: Int = 0
     
     var valAsZdk: Zdk {
         return Zdk(rawValue: self.val)!

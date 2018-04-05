@@ -60,7 +60,6 @@ class KiyoshiViewController: UITableViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
                 guard let this = self else { return }
-                
                 if let first = value.first {
                     if first.name == "キヨシ" {
                         this.kiyoshiToast?.show(animated: true)
@@ -68,13 +67,12 @@ class KiyoshiViewController: UITableViewController {
                     }
                     
                     this.speak(text: first.name)
+                    
+                    DispatchQueue.main.async {
+                        this.tableView.scrollToRow(at: IndexPath(row: 0, section: 0),
+                                                   at: .top, animated: true)
+                    }
                 }
-                
-                DispatchQueue.main.async {
-                    this.tableView.scrollToRow(at: IndexPath(row: 0, section: 0),
-                                               at: .top, animated: true)
-                }
-
             })
             .disposed(by: disposeBag)
     }
